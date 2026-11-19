@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mind Overload Tools - Free AI Prompt & Exam Calculator</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card: #131a2a;
+      --border: #232d45;
+      --accent: #facc15;
+      --accent-hover: #eab308;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --success: #22c55e;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      padding: 30px 15px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    header p {
+      color: var(--muted);
+      margin-top: 8px;
+      font-size: 1.05rem;
+    }
+    .ad-banner {
+      background: #1a2236;
+      border: 1px dashed var(--accent);
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      margin-bottom: 25px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .ad-banner a {
+      color: var(--accent);
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+    .card h2 {
+      font-size: 1.35rem;
+      margin-bottom: 15px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    select, input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      background: #0b0f19;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 1rem;
+    }
+    select:focus, input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    button {
+      width: 100%;
+      padding: 13px;
+      background: var(--accent);
+      color: #000;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: var(--accent-hover);
+    }
+    .btn-secondary {
+      background: #232d45;
+      color: var(--text);
+      margin-top: 10px;
+    }
+    .btn-secondary:hover {
+      background: #313f60;
+    }
+    .result-box {
+      margin-top: 18px;
+      padding: 15px;
+      background: #0b0f19;
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      display: none;
+    }
+    .result-box p {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+    .highlight {
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Mind Overload Toolkit</h1>
+      <p>100% Free AI Study Prompts & Instant Exam Calculators</p>
+    </header>
+
+    <!-- Monetization / Affiliate Banner Slot -->
+    <div class="ad-banner">
+      🔥 <strong>Recommended Resource:</strong> Want top exam ranks? Check out our 
+      <a href="#your-affiliate-link" target="_blank">Top Study Books & Free PDF Notes Vault &rarr;</a>
+    </div>
+
+    <div class="grid">
+      <!-- TOOL 1: AI PROMPT GENERATOR -->
+      <div class="card">
+        <h2>🤖 AI Study Prompt Generator</h2>
+        <label for="promptType">1. Select Your Goal:</label>
+        <select id="promptType">
+          <option value="explain">Explain Any Hard Topic Simply</option>
+          <option value="mcq">Create 10 Hard Exam MCQs</option>
+          <option value="summary">Make 1-Page Revision Notes</option>
+          <option value="timetable">Build a 30-Day Topper Timetable</option>
+        </select>
+
+        <label for="topicInput">2. Enter Chapter or Subject Name:</label>
+        <input type="text" id="topicInput" placeholder="e.g., Newton's Laws of Motion or Class 10 History" />
+
+        <button onclick="generatePrompt()">Generate AI Prompt</button>
+
+        <div id="promptOutputBox" class="result-box">
+          <label>Copy & Paste this into ChatGPT or Gemini:</label>
+          <textarea id="generatedText" rows="5" readonly></textarea>
+          <button class="btn-secondary" onclick="copyPrompt()" id="copyBtn">📋 Copy Prompt</button>
+        </div>
+      </div>
+
+      <!-- TOOL 2: EXAM PERCENTAGE & TARGET CALCULATOR -->
+      <div class="card">
+        <h2>📊 Exam Marks & 90% Target</h2>
+        <label for="obtainedMarks">Marks Obtained:</label>
+        <input type="number" id="obtainedMarks" placeholder="e.g., 415" />
+
+        <label for="totalMarks">Total Maximum Marks:</label>
+        <input type="number" id="totalMarks" placeholder="e.g., 500" />
+
+        <button onclick="calculateMarks()">Calculate Score</button>
+
+        <div id="marksOutputBox" class="result-box">
+          <p>Your Percentage: <span class="highlight" id="percentResult">0%</span></p>
+          <p>Performance Grade: <strong id="gradeResult">-</strong></p>
+          <p id="targetAdvice" style="color: var(--success); margin-top: 8px;"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Ad / Subscription Slot -->
+    <div class="ad-banner" style="margin-top: 25px;">
+      🚀 Subscribe to <strong>Mind Overload</strong> on YouTube for daily study hacks & motivation!
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Mind Overload Digital Tools. Built for Students Worldwide.</p>
+    </footer>
+  </div>
+
+  <script>
+    function generatePrompt() {
+      const type = document.getElementById('promptType').value;
+      const topic = document.getElementById('topicInput').value.trim() || "my upcoming exam syllabus";
+      let prompt = "";
+
+      if (type === "explain") {
+        prompt = `Act as an expert teacher. Explain "${topic}" in very simple language as if I am 12 years old. Use real-life examples, bullet points, and highlight the 5 most important exam points to remember.`;
+      } else if (type === "mcq") {
+        prompt = `Create 10 difficult multiple-choice questions (MCQs) on "${topic}" for exam practice. Do not show the answers immediately. List all 10 questions first, and provide the answer key with short explanations at the very bottom.`;
+      } else if (type === "summary") {
+        prompt = `Summarize "${topic}" into a structured 1-page revision cheat sheet. Include key definitions, important dates or formulas, and common mistakes students make in exams.`;
+      } else if (type === "timetable") {
+        prompt = `Create a strict, high-focus 30-day daily study timetable to master "${topic}". Include active recall sessions, 10-minute breaks, and weekly revision tests.`;
+      }
+
+      document.getElementById('generatedText').value = prompt;
+      document.getElementById('promptOutputBox').style.display = 'block';
+      document.getElementById('copyBtn').innerText = "📋 Copy Prompt";
+    }
+
+    function copyPrompt() {
+      const textArea = document.getElementById('generatedText');
+      textArea.select();
+      textArea.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(textArea.value);
+      document.getElementById('copyBtn').innerText = "✅ Copied!";
+    }
+
+    function calculateMarks() {
+      const obtained = parseFloat(document.getElementById('obtainedMarks').value);
+      const total = parseFloat(document.getElementById('totalMarks').value);
+
+      if (isNaN(obtained) || isNaN(total) || total <= 0 || obtained < 0 || obtained > total) {
+        alert("Please enter valid marks!");
+        return;
+      }
+
+      const percentage = ((obtained / total) * 100).toFixed(2);
+      let grade = "";
+      if (percentage >= 90) grade = "A+ (Topper Level)";
+      else if (percentage >= 80) grade = "A (Excellent)";
+      else if (percentage >= 70) grade = "B (Good)";
+      else if (percentage >= 60) grade = "C (Average)";
+      else grade = "Needs Focus & Revision";
+
+      const target90Marks = Math.ceil(total * 0.90);
+      const diff = target90Marks - obtained;
+      let advice = "";
+
+      if (diff <= 0) {
+        advice = "🔥 You have already crossed the 90% Topper mark!";
+      } else {
+        advice = `🎯 You need ${diff} more marks to hit 90% (${target90Marks}/${total}).`;
+      }
+
+      document.getElementById('percentResult').innerText = percentage + "%";
+      document.getElementById('gradeResult').innerText = grade;
+      document.getElementById('targetAdvice').innerText = advice;
+      document.getElementById('marksOutputBox').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
